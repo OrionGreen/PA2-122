@@ -45,8 +45,9 @@ void menuOptions(List* pList, Data* data, FILE* infile) {
 		if (choice == 5) {
 			int check = 0;
 			do {
-				Data newData;
+				Data newData = {NULL};
 				gatherSongToDelete(&newData);
+				check = 0;
 				check = delete(pList, &newData);
 			} while (check == 0);
 			check = 0;
@@ -98,16 +99,18 @@ void menuOptions(List* pList, Data* data, FILE* infile) {
 int store(List* pList, FILE* infile) {
 	int success = 0;
 	Node* pMem = pList->pHead;
-
+	infile = fopen("musicPlayList.csv", "w");
 	while (pMem != NULL) {
 		
-		fprintf(infile, "%s,%s,%s,%s,%d:%d,%d,%d", pMem->songInfo.artist, pMem->songInfo.album, pMem->songInfo.song,
+		fprintf(infile, "%s,%s,%s,%s,%d:%d,%d,%d\n", pMem->songInfo.artist, pMem->songInfo.album, pMem->songInfo.song,
 			pMem->songInfo.genre, pMem->songInfo.length.minutes, pMem->songInfo.length.seconds, pMem->songInfo.playCount, pMem->songInfo.rating);
 
 		pMem = pMem->pNext;
 		success = 1;
 	}
-	
+	fclose(infile);
+	infile = fopen("musicPlayList.csv", "r");
+
 	return success;
 }
 
@@ -315,6 +318,7 @@ int rate(List* pList) {
 		search[strlen(search) - 1] = '\0';
 		printf("\nYou searched for: %s\n", search);
 	} while (search == NULL);
+	success = 0;
 
 	while (pMem != NULL) {
 		if (strcmp(pMem->songInfo.song, search) == 0) {
@@ -409,7 +413,7 @@ void printList(Node* pHead) {
 int exitDmm(List* pList, FILE* infile) {
 	int success = 1;
 	Node* pMem = pList->pHead;
-
+	infile = fopen("musicPlayList.csv", "w");
 	while (pMem != NULL) {
 
 		fprintf(infile, "%s,%s,%s,%s,%d:%d,%d,%d\n", pMem->songInfo.artist, pMem->songInfo.album, pMem->songInfo.song,
