@@ -1,5 +1,9 @@
 #include "dmm.h"
-
+/*
+* Programmer: Orion Green
+* Date: 9/27/21
+* Digital Music Manager Program
+*/
 int main(void) {
 
 	int check = 0;

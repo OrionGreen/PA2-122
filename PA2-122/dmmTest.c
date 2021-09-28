@@ -1,5 +1,6 @@
 #include"dmmTest.h"
 
+//function to test the insert this will not insert because of invalid values and thus success is a 0 from the insert 
 int testInsert(void) {
 	Data d1 = { "Perry, Katy", "Witness", "Chained to the Rhythm", "Pop", {4, 36}, -1, 6 };
 	List musicCollection = { NULL };
@@ -13,6 +14,7 @@ int testInsert(void) {
 	return 0;
 }
 
+//tests the delete, it deletes the only thing in the list which will make the pointer NULL;
 int testDelete(void) {
 	List musicCollection = { NULL };
 	Data d1 = { "Perry, Katy", "Witness", "Chained to the Rhythm", "Pop", {4, 36}, 3, 5 };
@@ -28,6 +30,7 @@ int testDelete(void) {
 	return success;
 }
 
+//Tests the shuffle with a hard coded array that will play in this specific order.
 int testShuffle(void) {
 	List musicCollection = { NULL };
 	Data d1 = { "Perry, Katy", "Witness", "Chained to the Rhythm", "Pop", {4, 36}, 3, 5};

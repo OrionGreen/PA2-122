@@ -1,5 +1,9 @@
 #include "dmm.h"
 
+///Options menu that loops back to menu after things have been done
+/// <param name="pList"></param>
+/// <param name="data"></param>
+/// <param name="infile"></param>
 void menuOptions(List* pList, Data* data, FILE* infile) {
 	int go = 1;
 	
@@ -96,6 +100,10 @@ void menuOptions(List* pList, Data* data, FILE* infile) {
 	}
 }
 
+/// Takes in a List pointer and a file which then writes the stuff we have into a file
+/// <param name="pList"></param>
+/// <param name="infile"></param>
+/// <returns></returns>
 int store(List* pList, FILE* infile) {
 	int success = 0;
 	Node* pMem = pList->pHead;
@@ -114,6 +122,11 @@ int store(List* pList, FILE* infile) {
 	return success;
 }
 
+/// Loads data from a preexisting file into a doubly linked list
+/// <param name="pList"></param>
+/// <param name="pNewData"></param>
+/// <param name="infile"></param>
+/// <returns></returns>
 int load(List* pList, Data* pNewData, FILE* infile) {
 	char line[300] = { '\0' };
 	initList(pList);
@@ -154,6 +167,8 @@ int load(List* pList, Data* pNewData, FILE* infile) {
 	return success;
 }
 
+/// displays the list in 2 ways, first the whole list 2nd by artist
+/// <param name="pList"></param>
 void display(List* pList){
 	int success = 0;
 	int choice = 0;
@@ -197,6 +212,9 @@ void display(List* pList){
 		return success;
 }
 
+///Lets you edit any part of your list
+/// <param name="pList"></param>
+/// <returns></returns>
 int edit(List* pList) {
 	int success = 0;
 	int choice = 0;
@@ -304,6 +322,9 @@ int edit(List* pList) {
 	return success;
 }
 
+/// rate any song in list
+/// <param name="pList"></param>
+/// <returns></returns>
 int rate(List* pList) {
 	char search[40] = { '\0' };
 	Node* pMem = pList->pHead;
@@ -335,6 +356,10 @@ int rate(List* pList) {
 	return success;
 }
 
+
+/// Plays song for 4 seconds and then goes down the list, can also play from a certain song until end of list
+/// <param name="pList"></param>
+/// <returns></returns>
 int play(List* pList) {
 	Node* pMem = pList->pHead;
 	int success = 0;
@@ -398,6 +423,8 @@ int play(List* pList) {
 	return success;
 }
 
+/// Print list helper function
+/// <param name="pHead"></param>
 void printList(Node* pHead) {
 	Node* pMem = pHead;
 
@@ -410,6 +437,10 @@ void printList(Node* pHead) {
 	}
 }
 
+/// Exits the program and returns the neccessary value for us to leave the program;
+/// <param name="pList"></param>
+/// <param name="infile"></param>
+/// <returns></returns>
 int exitDmm(List* pList, FILE* infile) {
 	int success = 1;
 	Node* pMem = pList->pHead;
@@ -425,6 +456,10 @@ int exitDmm(List* pList, FILE* infile) {
 	return success;
 }
 
+///Insert your own song into the front of the list but all values must be valid
+/// <param name="pList"></param>
+/// <param name="data"></param>
+/// <returns></returns>
 int insert(List* pList, Data* data) {
 	
 
@@ -444,6 +479,7 @@ int insert(List* pList, Data* data) {
 	return success;
 }
 
+///Deletes a song that is listed in the data pointer block
 int delete(List* pList, Data* data) {
 	int success = 0;
 	int choice = 0;
@@ -481,6 +517,9 @@ int delete(List* pList, Data* data) {
 	return success;
 }
 
+///Creates a random order in an integer array so that we can use it in the shuffle parameters.
+/// <param name="pList"></param>
+/// <param name="areturn"></param>
 void randOrder(List* pList, int areturn[]) {
 	Node* pMem = pList->pHead;
 	int counter = 0;
@@ -505,12 +544,19 @@ void randOrder(List* pList, int areturn[]) {
 
 }
 
+///Helper function to swap things in an array
+/// <param name="a"></param>
+/// <param name="b"></param>
 void swap(int* a, int* b) {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
+/// Shuffle plays the song list based on a passed in array of numbers
+/// <param name="pList"></param>
+/// <param name="shufarr"></param>
+/// <returns></returns>
 int shuffle(List* pList, int shufarr[]) {
 	Node* pMem = pList->pHead;
 	int nodeSpot = 0;
@@ -551,6 +597,9 @@ int shuffle(List* pList, int shufarr[]) {
 	return success;
 }
 
+/// asks how you would like to sort the list
+/// <param name="pList"></param>
+/// <returns></returns>
 int sortChoice(List* pList) {
 	
 	Node* pTemp = NULL;
@@ -585,6 +634,7 @@ int sortChoice(List* pList) {
 	return success;
 }
 
+//Helper function to sort by artist
 void bubbleSortArtist(List* pList) {
 	Node* pMem;
 	Node* pPrev = NULL;
@@ -607,6 +657,7 @@ void bubbleSortArtist(List* pList) {
 	} while (swap);
 }
 
+//Helper function to sort by Album
 void bubbleSortAlbum(List* pList) {
 	Node* pMem;
 	Node* pPrev = NULL;
@@ -629,6 +680,7 @@ void bubbleSortAlbum(List* pList) {
 	} while (swap);
 }
 
+//Helper function to sort by rating
 void bubbleSortRating(List* pList) {
 	Node* pMem;
 	Node* pPrev = NULL;
@@ -651,6 +703,7 @@ void bubbleSortRating(List* pList) {
 	} while (swap);
 }
 
+//Helper function to sort by times played
 void bubbleSortTimesPlayed(List* pList) {
 	Node* pMem;
 	Node* pPrev = NULL;
@@ -673,6 +726,7 @@ void bubbleSortTimesPlayed(List* pList) {
 	} while (swap);
 }
 
+//Swaps data blocks for the sort functions
 void swapData(Node* swap, Node* set) {
 	Node temp = {NULL};
 
@@ -706,12 +760,14 @@ void swapData(Node* swap, Node* set) {
 	
 }
 
+//initializes a list
 void initList(List* pList)
 {
 	//empty list
 	pList->pHead = NULL; // (*pList).phead = NULL;
 }
 
+//make node function for the insert front
 Node* makeNode(const Data* pNewData) {
 
 	Node* pMem = (Node*)malloc(sizeof(Node)); // we tried to allocate space
@@ -733,6 +789,7 @@ Node* makeNode(const Data* pNewData) {
 	return pMem;
 }
 
+// inserts data into front of the list
 int insertFront(List* pList, const Data* pNewData)
 {
 	Node* pMem = makeNode(pNewData);
@@ -751,6 +808,7 @@ int insertFront(List* pList, const Data* pNewData)
 	return success;
 }
 
+//asks what song to delete and passes it back into data strcut
 void gatherSongToDelete(Data* newData) {
 	int success = 0;
 	char input[40] = { '\0' };
@@ -766,6 +824,7 @@ void gatherSongToDelete(Data* newData) {
 	strcpy(input, "\0");
 }
 
+//creates new data struct
 void gatherData(Data* newData) {
 	
 	//Data data;// = NULL;

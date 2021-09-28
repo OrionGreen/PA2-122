@@ -7,12 +7,14 @@
 #include <windows.h>
 #include <time.h>
 
+//duration struct for time 
 typedef struct duration
 {
 	int minutes;//4
 	int seconds;//4
 }Duration;//8
 
+//data struct to hold all data
 typedef struct data
 {
 	char artist[20]; // 20 bytes
@@ -25,7 +27,7 @@ typedef struct data
 
 }Data;//96 bytes
 
-
+//node with nodes before and after
 typedef struct node
 {
 	Data songInfo;//54 bytes
@@ -33,12 +35,13 @@ typedef struct node
 	struct node* pPrev; //4bytes
 } Node;//62 bytes
 
+//list struct so no **
 typedef struct list
 {
 	Node* pHead;
 }List;
 
-
+//Function declarations
 void menuOptions(List* pList, Data* data, FILE* infile);
 void initList(List* pList);
 Node* makeNode(const Data* pNewData);
