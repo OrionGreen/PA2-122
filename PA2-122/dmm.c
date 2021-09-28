@@ -517,11 +517,16 @@ int shuffle(List* pList, int shufarr[]) {
 	int i = 0;
 	int found = 0;
 	int success = 0;
+	int maxSize = 0; 
 	while (pMem != NULL) {
+		maxSize++;
+		pMem = pMem->pNext;
+	}
+	pMem = pList->pHead;
+
+	while (pMem != NULL && i < maxSize) {
 		nodeSpot = 0;
-		if (shufarr[i] == 0) {
-			break;
-		}
+		
 		while (found != 1) {
 			if (nodeSpot == shufarr[i]) {
 				printf("Now Playing:");
@@ -531,9 +536,6 @@ int shuffle(List* pList, int shufarr[]) {
 				Sleep(4000);
 				system("cls");
 
-				while (pMem->pPrev != NULL) {
-					pMem = pList->pHead;
-				}
 				found = 1;
 			}
 			if (pMem->pNext != NULL) {
@@ -543,6 +545,7 @@ int shuffle(List* pList, int shufarr[]) {
 		}
 		i++;
 		success = 1;
+		pMem = pList->pHead;
 		found = 0;
 	}
 	return success;
