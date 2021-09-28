@@ -8,5 +8,7 @@ int main(void) {
 	FILE* infile = fopen("musicPlayList.csv", "r+");
 
 	menuOptions(&musicCollection, &dataInsert, infile);
-	
+	fclose(infile);
+
+	return 0;
 }

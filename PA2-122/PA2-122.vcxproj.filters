@@ -18,12 +18,18 @@
     <ClInclude Include="dmm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dmmTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dmm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dmmTest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

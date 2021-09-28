@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <windows.h> //sleep(2000) time to stay.
+//Sleep(2000) time to stay.
+#include <windows.h>
+#include <time.h>
 
 typedef struct duration
 {
@@ -15,7 +17,7 @@ typedef struct data
 {
 	char artist[20]; // 20 bytes
 	char album[20];//20
-	char song[20];//20
+	char song[40];//20
 	char genre[20];//20
 	Duration length;//8
 	int playCount;//4 bytes
@@ -45,3 +47,18 @@ int store(List* pList, FILE* infile);
 int load(List* pList, Data* pNewData, FILE* infile);
 void display(List* pList);
 int exitDmm(List* pList, FILE* infile);
+int delete(List* pList, Data* data);
+int rate(List* pList);
+int play(List* pList);
+void printList(Node* pHead);
+int shuffle(List* pList, int shufarr[]);
+void randOrder(List* pList, int areturn[]);
+void gatherSongToDelete(Data* newData);
+int sortChoice(List* pList);
+void swapData(Node* swap, Node* set);
+void bubbleSortArtist(List* pList);
+void bubbleSortAlbum(List* pList);
+void bubbleSortRating(List* pList);
+void bubbleSortTimesPlayed(List* pList);
+void gatherData(Data* newData);
+void swap(int* a, int* b);

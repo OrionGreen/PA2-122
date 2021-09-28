@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="dmm.h" />
+    <ClInclude Include="dmmTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dmm.c" />
+    <ClCompile Include="dmmTest.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
